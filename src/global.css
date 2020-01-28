@@ -1,0 +1,37 @@
+*{
+  font-size: 12px;
+}
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+table{
+  border-collapse: collapse;
+}
+td,th{
+  border:solid 1px #ddd;
+  padding:2px 5px;
+}
+td.bold{font-weight: bold;}
+.fs14{font-size: 14;}
+table.china-data{
+  margin-top:12px;
+}
+
+.clear{clear: both;}
+.main-left{
+  float:left;
+  width:401px;
+}
+.main-right{
+  float: left;
+  width: calc(100% - 405px);
+}
+.main-title{
+  font-size: 18px;
+  font-weight: bold;
+}
