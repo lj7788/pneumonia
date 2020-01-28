@@ -8,4 +8,4 @@ React For Show Pneumonia Data
 服务数据地址 https://view.inews.qq.com/g2/getOnsInfo?name=wuwei_ww_area_counts&callback=haha&_=1580178304226
 
 
-![效果图](/docs/img.png)
+![效果图](./docs/img.jpg)
