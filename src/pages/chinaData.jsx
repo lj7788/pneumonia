@@ -35,8 +35,8 @@ class ChinaData extends React.Component{
                         tmps.push(<tr key={itt.name+itt.area+itt.city}>
                             <td align="right">{itt.city}</td>
                             <td>{showText(itt.confirm)}</td>
-                            <td>{showText(it.dead)}</td>
-                            <td>{showText(it.heal)}</td> 
+                            <td>{showText(itt.dead)}</td>
+                            <td>{showText(itt.heal)}</td> 
                         </tr>)
                     })
                 }

@@ -92,7 +92,7 @@ class Page1 extends React.Component{
                 cdata.confirm+=it.confirm
             }
         })     
-        
+        console.log(chinaData)
         this.setState({
             mainData:tmps,
             countryData:country,
