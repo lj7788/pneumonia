@@ -35,3 +35,22 @@ table.china-data{
   font-size: 18px;
   font-weight: bold;
 }
+.red{
+  color:red;
+}
+.map-top{
+  height: 300px;
+}
+.map-top .left{
+  width:calc(100% - 310px);
+  float:left;
+}
+.map-top .right{
+  float:left;
+  width:300px;
+  position: relative;
+  z-index: 9999;
+}
+.map-top .right td{
+  padding: 0px;
+}

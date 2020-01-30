@@ -19,8 +19,6 @@ class MapData extends React.Component {
   };
   constructor(props) {
     super(props);
-    let { lineData } = this.props;
-    this.setState({ lineData });
   }
   componentDidMount() {
     // 基于准备好的dom，初始化echarts实例
@@ -68,23 +66,22 @@ class MapData extends React.Component {
     });
   };
   updateChinaData = data => {
-    let { mapChart } = this.state;
+    let { mapChart } = this.state;  
     if (mapChart) {
-    
-      mapChart.setOption({  
-        // legend: {           
+      mapChart.setOption({
+        // legend: {
         //     x:'center',
         //     data:['confirm','dead']
-        // }, 
+        // },
         tooltip: {
-            trigger: 'item',
-            formatter: '{b}<br/>{c}'
-        },    
-        dataRange: {         
-            x: 'left',
-            y: 'middle',
-            text:['高','低'],           
-            calculable : true
+          trigger: 'item',
+          formatter: '{b}<br/>{c}',
+        },
+        dataRange: {
+          x: 'left',
+          y: 'middle',
+          text: ['高', '低'],
+          calculable: true,
         },
         series: [
           {
@@ -92,26 +89,29 @@ class MapData extends React.Component {
             type: 'map',
             mapType: 'china',
             roam: false,
-            label:{
-                show:true,
+            label: {
+              show: true,
             },
             itemStyle: {
-              normal: { label: { show: true , formatter: '{b}\n{c}'} },
-              emphasis: { label: { show: true , formatter: '{b}\n{c}'} },
+              normal: { label: { show: true, formatter: '{b}\n{c}' } },
+              emphasis: { label: { show: true, formatter: '{b}\n{c}' } },
             },
-            data: data.map(it=>{
-                return {
-                    name:it.area,
-                    value:it.confirm
-                }
-            })
-          }
+            data: data.map(it => {
+              return {
+                name: it.area,
+                value: it.confirm,
+              };
+            }),
+          },
         ],
       });
     }
   };
   updateLineData = data => {
-    let { myChart } = this.state;
+    let { myChart } = this.state;    
+      this.setState({
+        lineData: data,
+      });
     if (myChart) {
       myChart.setOption({
         yAxis: {
@@ -149,10 +149,46 @@ class MapData extends React.Component {
     }
   };
 
+  lineMakeTabke = () => {
+    let { lineData } = this.state;
+    let tabs = [];
+    lineData.forEach((it,idx) => {
+      tabs.push(
+        <tr key={it.date+'-'+idx}>
+          <td>{it.date}</td>
+          <td>{it.confirm}<span className="red">({it.sumConfirm})</span></td>
+          <td>{it.dead}<span className="red">({it.sumDead})</span></td>
+          <td>{it.heal}<span className="red">({it.sumHeal})</span></td>
+        </tr>,
+      );
+    });
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>确诊<span class="red">(增加)</span></th>
+            <th>死亡<span class="red">(增加)</span></th>
+            <th>治愈<span class="red">(增加)</span></th>
+          </tr>
+        </thead>
+        <tbody>{tabs}</tbody>
+      </table>
+    );
+  };
+
   render() {
+    let lineTable = this.lineMakeTabke();
     return (
       <div>
-        <div id="main" style={{ width: '100%', height: 300 }}></div>
+        <div className="map-top">
+        <div id="main" className="left" style={{height: 300 }}></div>
+        <div className="right">
+        {lineTable}
+        </div>
+        <div className="clear"></div>
+        </div>
         <div id="mainMap" style={{ width: '100%', height: 600 }}></div>
       </div>
     );
